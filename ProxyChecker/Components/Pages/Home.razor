@@ -1,0 +1,17 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<AuthorizeView>
+    <Authorizing>
+        <div>Authorizing ...</div>
+    </Authorizing>
+    <Authorized>
+        <MudText Typo="Typo.h6" GutterBottom="true">Hello, @context.User.Identity.Name</MudText>
+
+        <UserInfos />
+    </Authorized>
+    <NotAuthorized>
+        <div>Not authorized!</div>
+    </NotAuthorized>
+</AuthorizeView>

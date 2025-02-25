@@ -1,0 +1,21 @@
+﻿@page "/invoke-api"
+
+<MudPaper Class="pa-4 ma-2" Elevation="3">
+    <MudTextField @bind-Value="url" Label="Invoke URL" Variant="Variant.Filled"  />
+    <MudButton OnClick="OpenUrl">Open URL</MudButton>
+</MudPaper>
+
+@code {
+    [Inject]
+    IJSRuntime JsRuntimeInstance { get; set; }
+
+    string url;
+
+    void OpenUrl()
+    {
+        if (!string.IsNullOrEmpty(url))
+        {
+            _ = JsRuntimeInstance.InvokeVoidAsync("open", url, "_blank");
+        }
+    }
+}

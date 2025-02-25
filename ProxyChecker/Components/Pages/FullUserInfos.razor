@@ -1,0 +1,25 @@
+﻿@page "/full-userinfos"
+
+@using Newtonsoft.Json
+
+@attribute [Authorize]
+
+<p>The current authenticated user:</p>
+<div id="jsonRender"></div>
+
+@code {
+    [Inject]
+    IJSRuntime JsRuntimeInstance { get; set; }
+
+    [Inject]
+    AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        var currentIdentity = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity;
+        var jsonString = JsonConvert.SerializeObject(currentIdentity, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore, Formatting = Formatting.None });
+        await JsRuntimeInstance.InvokeVoidAsync("ProxyChecker.renderJson", "jsonRender", jsonString);
+    }
+}
