@@ -1,11 +1,13 @@
-﻿<AuthorizeView>
+﻿@inject IStringLocalizer<LoginDisplay> L
+
+<AuthorizeView>
     <Authorizing>
-        <div>Authorizing ...</div>
+        <div>@L["Authorizing"] ...</div>
     </Authorizing>
     <Authorized>
-        <div>You are logged as @context.User.Identity.Name</div>
+        <div>@L["YouAreLoggedAs"] @context.User.Identity.Name</div>
     </Authorized>
     <NotAuthorized>
-        <div>Not authorized!</div>
+        <div>@L["Not authorized"]!</div>
     </NotAuthorized>
 </AuthorizeView>

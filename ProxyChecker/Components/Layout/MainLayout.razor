@@ -9,7 +9,11 @@
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudText Typo="Typo.h5" Class="ml-3">Application</MudText>
         <MudSpacer />
+
+        <CultureSelector />
+        
         <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
+        
         <LoginDisplay></LoginDisplay>
     </MudAppBar>
     <MudDrawer id="nav-drawer" @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
@@ -28,6 +32,9 @@
 </div>
 
 @code {
+    [Inject]
+    IStringLocalizer<MainLayout> Localizer { get; set; }
+
     private bool _drawerOpen = true;
     private bool _isDarkMode = true;
     private MudTheme? _theme = null;
@@ -68,8 +75,8 @@
     {
         Primary = "#7e6fff",
         Surface = "#1e1e2d",
-        Background = "#1a1a27",
-        BackgroundGray = "#151521",
+            Background = "#1a1a27",
+            BackgroundGray = "#151521",
         AppbarText = "#92929f",
         AppbarBackground = "rgba(26,26,39,0.8)",
         DrawerBackground = "#1a1a27",

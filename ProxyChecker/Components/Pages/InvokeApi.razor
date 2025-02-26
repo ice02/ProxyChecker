@@ -1,8 +1,9 @@
 ﻿@page "/invoke-api"
+@inject IStringLocalizer<InvokeApi> Localizer
 
 <MudPaper Class="pa-4 ma-2" Elevation="3">
-    <MudTextField @bind-Value="url" Label="Invoke URL" Variant="Variant.Filled"  />
-    <MudButton OnClick="OpenUrl">Open URL</MudButton>
+    <MudTextField @bind-Value="url" Label="@Localizer["Invoke URL"]" Variant="Variant.Filled"  />
+    <MudButton OnClick="OpenUrl">@Localizer["Open URL"]</MudButton>
 </MudPaper>
 
 @code {
