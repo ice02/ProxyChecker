@@ -1,17 +1,20 @@
 ﻿@page "/"
 
+@inject IStringLocalizer<UserInfos> Localizer
+
+
 <PageTitle>Home</PageTitle>
 
 <AuthorizeView>
     <Authorizing>
-        <div>Authorizing ...</div>
+        <div>@Localizer["Authorizing"] ...</div>
     </Authorizing>
     <Authorized>
-        <MudText Typo="Typo.h6" GutterBottom="true">Hello, @context.User.Identity.Name</MudText>
+        <MudText Typo="Typo.h6" GutterBottom="true">@Localizer["Hello"], @context.User.Identity.Name</MudText>
 
         <UserInfos />
     </Authorized>
     <NotAuthorized>
-        <div>Not authorized!</div>
+        <div>@Localizer["NotAuthorized"]!</div>
     </NotAuthorized>
 </AuthorizeView>
