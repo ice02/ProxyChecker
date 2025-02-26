@@ -19,8 +19,6 @@ namespace ProxyChecker.Components.Pages
 
             logger.LogDebug($"Culture : {CultureInfo.CurrentCulture.NativeName}");
 
-            var userinfo = Localizer.GetString("UserInfo");
-
             if (identity == null && AuthenticationStateProvider != null)
             {
                 var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
