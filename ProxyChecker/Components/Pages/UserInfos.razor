@@ -38,25 +38,5 @@ else
 }
 
 @code {
-    [Inject]
-    AuthenticationStateProvider AuthenticationStateProvider { get; set; }
-
-    WindowsIdentity identity = null;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        await base.OnAfterRenderAsync(firstRender);
-
-        logger.LogDebug($"Culture : {CultureInfo.CurrentCulture.NativeName}");
-
-        var userinfo = Localizer.GetString("UserInfo"); 
-
-        @if (identity == null)
-        {
-            identity = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity as WindowsIdentity;
-            StateHasChanged();
-        }
-        
-        
-    }
+    
 }
